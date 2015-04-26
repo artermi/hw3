@@ -3,9 +3,10 @@
 #include <vector>
 #include <stack>
 
-#define Status int
+#define Status double
 
 #define MAX 30
+
 #define Number 0
 #define open 1
 #define close 2
@@ -25,7 +26,14 @@
 #define Or 16
 #define Land 17
 #define Lor 18
-
+#define SinC 19
+#define CosC 20
+#define ExpC 21
+#define LogC 22
+#define PowC 23
+#define SqrtC 24
+#define FabC 25
+#define comma 26
 
 using namespace std;
 struct Unit{

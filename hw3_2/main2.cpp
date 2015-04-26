@@ -1,4 +1,4 @@
-#include "caculator.h"
+#include "caculator2.h"
 
 int main(){
 	string line;

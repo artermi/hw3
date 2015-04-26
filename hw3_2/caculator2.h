@@ -1,6 +1,6 @@
 #ifndef CACULATOR_H_INCLUDED
 #define CACULATOR_H_INCLUDED
-#include "postfix.h"
+#include "postfix2.h"
 #include <cmath>
 
 void dounary(stack<Status>&numstack,int which);
