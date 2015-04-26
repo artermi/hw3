@@ -1,4 +1,5 @@
 #include "caculator2.h"
+#include <stdio.h>
 
 int main(){
 	string line;
@@ -7,7 +8,7 @@ int main(){
 		line = cleanblank(line);
 		transtopos(line,thepostfix);
 		printpos(thepostfix);
-		cout << "RESULT: "<<caculator(thepostfix) << endl;
+		printf( "RESULT: %.6lf\n",caculator(thepostfix));
 		thepostfix.clear();
 		line.clear();
 	}

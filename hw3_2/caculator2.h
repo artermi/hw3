@@ -5,7 +5,7 @@
 
 void dounary(stack<Status>&numstack,int which);
 void dobinary(stack<Status>&numstack,int which);
-int caculator(const vector<struct Unit>postfix);
+Status caculator(const vector<struct Unit>postfix);
 
 
 #endif // CACULATOR_H_INCLUDED

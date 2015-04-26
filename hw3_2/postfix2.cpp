@@ -1,11 +1,12 @@
 #include "postfix2.h"
+#include <stdio.h>
 string theprintoperator[MAX]{
 	" ",
-	"( ",  ") ", "p ", "n ","! ",
+	"( ",  ") ", "+ ", "- ","! ",
 	"~ ", "* " , "/ ", "% ","+ ",
 	"- ", "<< ", ">> ","& ","^ ",
 	"| ", "&& ","|| ","sin ","cos ",
-	"exp ","log ","pow ","sqrt ","fab ",
+	"exp ","log ","pow ","sqrt ","fabs ",
 	", "
 };
 Unit operators[MAX] ={
@@ -45,9 +46,11 @@ void infixtopostfix(const vector<struct Unit> &infix,vector<struct Unit>&postfix
 			}
 
 			if(infix[i].kind == close){
+				if(opers.top().level == 10 )
+					postfix.push_back(opers.top());
 				opers.pop();
 			}
-			else if(infix[i].kind == comma)
+			else if(infix[i].kind == comma);
 			else
 				opers.push(infix[i]);
 		}
@@ -142,14 +145,14 @@ void transtopos(const string &line,vector<struct Unit> &postfix){
 				i += 3;
 			}
 			else if(line[i] == 'f'){
-				infix.push_back(operators[Fab]);
-				i += 3;
+				infix.push_back(operators[FabC]);
+				i += 4;
 			}
 			else if(line[i] == ',')
 				infix.push_back(operators[comma]);
 			i ++;
 		}
-		if(i <(int) line.size() &&  (isdigit(line[i]) || line[i] == '.'){
+		if(i <(int) line.size() && ( (isdigit(line[i])) || line[i] == '.' )){
 			temp = stod(line.substr(i),&sz);
 			i += sz;
 		}
@@ -167,7 +170,7 @@ void printpos(const vector<struct Unit> &postfix){
 	cout << "Postfix Exp: ";
 	for(i = 0; i <(int) postfix.size(); i++){
 		if(postfix[i].kind == Number)
-			cout << postfix[i].content << " ";
+			printf("%.6lf ", postfix[i].content);
 		else
 			cout << theprintoperator[(postfix[i].kind)];
 	}
