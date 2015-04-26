@@ -2,7 +2,7 @@
 #define CACULATOR_H_INCLUDED
 #include "postfix.h"
 #include <cmath>
-#define Status int
+
 void dounary(stack<Status>&numstack,int which);
 void dobinary(stack<Status>&numstack,int which);
 int caculator(const vector<struct Unit>postfix);

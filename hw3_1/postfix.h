@@ -3,6 +3,8 @@
 #include <vector>
 #include <stack>
 
+#define Status int
+
 #define MAX 30
 #define Number 0
 #define open 1
@@ -29,7 +31,7 @@ using namespace std;
 struct Unit{
 	int level;
 	int kind;
-	string content;
+	Status content;
 };
 string cleanblank(string &str);
 void infixtopostfix(const vector<struct Unit> &infix,vector<struct Unit>&postfix);

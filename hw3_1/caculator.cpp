@@ -50,14 +50,10 @@ void dobinary(stack<Status>&numstack,int which){
 int caculator(const vector<struct Unit>postfix){
     stack<Status>numstack;
     int i = 0;
-    int num;
-    while(i < postfix.size()){
+    while(i <(int) postfix.size()){
         switch (postfix[i].kind){
         case Number:
-            {
-            num =(int) strtol((postfix[i].content).c_str(),NULL,0);
-            numstack.push(num);
-            }
+            numstack.push(postfix[i].content);
             break;
         case postive: case negative: case Not:case Lnot:
             dounary(numstack,postfix[i].kind);

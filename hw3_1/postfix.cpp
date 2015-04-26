@@ -7,16 +7,16 @@ string theprintoperator[MAX]{
 	"| ", "&& ","|| "
 };
 Unit operators[MAX] ={
-	{0,0," "},
-	{10,1," "},{-1,2," "},{9,3," "},{9,4," "},{9,5," "},
-	{9,6," "},{8,7," "},{8,8," "},{8,9," "},{7,10," "},
-	{7,11," "},{6,12," "},{6,13," "},{5,14," "},{4,15," "},
-	{3,16," "},{2,17," "},{1,18," "}
+	{0,0,0},
+	{10,1,0},{-1,2,0},{9,3,0},{9,4,0},{9,5,0},
+	{9,6,0},{8,7,0},{8,8,0},{8,9,0},{7,10,0},
+	{7,11,0},{6,12,0},{6,13,0},{5,14,0},{4,15,0},
+	{3,16,0},{2,17,0},{1,18,0}
 };
 string cleanblank(string &str){
 	int i = 0;
 	string thenew;
-	while(i < str.size()){
+	while(i <(int) str.size()){
 		if(  str[i] != ' ' )
 			thenew += str[i];
 		i ++;
@@ -27,7 +27,7 @@ string cleanblank(string &str){
 void infixtopostfix(const vector<struct Unit> &infix,vector<struct Unit>&postfix){
 	stack<struct Unit> opers;
 	int i = 0;
-	while(i < infix.size()){
+	while(i <(int) infix.size()){
 		if(infix[i].kind == Number)
 			postfix.push_back(infix[i]);
 		else if(opers.empty() || (infix[i].level > (opers.top()).level)){
@@ -55,10 +55,11 @@ void infixtopostfix(const vector<struct Unit> &infix,vector<struct Unit>&postfix
 void transtopos(const string &line,vector<struct Unit> &postfix){
 	int i = 0;
 	vector<struct Unit> infix;
-	string temp;
-	Unit u0 = {0,Number," "};
+	Status temp = -1;
+	string :: size_type sz;
+	Unit u0 = {0,Number,0};
 	while(i < (int) line.size()){
-		while(i < line.size() && !isdigit(line[i])){
+		while(i <(int) line.size() && !isdigit(line[i])){
 			if(line[i] == '-' || line[i] == '+'){
 				if(i == 0 ||( (!isdigit(line[i-1]))  && line[i - 1] != ')')){
 					if(line[i] == '+')
@@ -113,15 +114,15 @@ void transtopos(const string &line,vector<struct Unit> &postfix){
 			}
 			i ++;
 		}
-		while(i < line.size() &&  isdigit(line[i])){
-			temp += line[i];
-			i ++;
+		if(i <(int) line.size() &&  isdigit(line[i])){
+			temp = stoi(line.substr(i),&sz);
+			i += sz;
 		}
-		if(temp.size() != 0){
+		if(temp != -1){
 			u0.content = temp;
 			infix.push_back(u0);
 		}
-		temp.clear();
+			temp = -1;
 	}
 	infixtopostfix(infix,postfix);
 
@@ -129,7 +130,7 @@ void transtopos(const string &line,vector<struct Unit> &postfix){
 void printpos(const vector<struct Unit> &postfix){
 	int i;
 	cout << "Postfix Exp: ";
-	for(i = 0; i < postfix.size(); i++){
+	for(i = 0; i <(int) postfix.size(); i++){
 		if(postfix[i].kind == Number)
 			cout << postfix[i].content << " ";
 		else
