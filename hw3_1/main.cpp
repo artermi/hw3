@@ -10,6 +10,7 @@ int main(){
 		cout << "RESULT: "<<caculator(thepostfix) << endl;
 		thepostfix.clear();
 		line.clear();
+		
 	}
 	return 0;
 }
